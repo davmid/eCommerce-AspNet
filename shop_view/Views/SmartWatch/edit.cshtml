@@ -1,0 +1,28 @@
+﻿@model shop_view.Models.SmartWatch
+
+<h2>Edit SmartWatch</h2>
+
+<form asp-controller="SmartWatch" asp-action="Edit" method="post">
+    <input asp-for="SWID" type="hidden" />
+    <div class="form-group">
+        <label asp-for="Brand"></label>
+        <input asp-for="Brand" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SWCategory"></label>
+        <select asp-for="SWCategory" asp-items="Html.GetEnumSelectList<shop_view.enums.Category>()" class="form-control">
+            <option value="">Select Category</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<a asp-controller="SmartWatch" asp-action="Index">Back to List</a>
