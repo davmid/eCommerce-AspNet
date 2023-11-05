@@ -6,15 +6,13 @@ namespace shop_view.Controllers
     public class DataController : Controller
     {
         [HttpGet]
-        public IActionResult Form()
-        {
-            return View();
-        }
-
-        [HttpPost]
         public IActionResult Form(Data data)
         {
-            return View("Result", data);
+            if (ModelState.IsValid)
+            {
+                return View("Results", data);
+            }
+            else return View();
         }
 
         public IActionResult Result(Data data)
