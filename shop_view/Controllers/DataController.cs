@@ -1,33 +1,25 @@
-﻿using System;
-using System.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-using RegistrationForm.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using shop_view.Models;
 
-namespace RegistrationForm.Controllers
+namespace shop_view.Controllers
 {
-    public class RegistrationController : Controller
+    public class DataController : Controller
     {
-        public ActionResult Index()
+        [HttpGet]
+        public IActionResult Form()
         {
-            var model = new RegistrationModel();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Index(RegistrationModel model)
+        public IActionResult Form(Data data)
         {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("ThankYou");
-            }
-
-            return View(model);
+            return View("Result", data);
         }
 
-        public ActionResult ThankYou()
+        public IActionResult Result(Data data)
         {
-            return View();
+            return View(data);
         }
     }
 }

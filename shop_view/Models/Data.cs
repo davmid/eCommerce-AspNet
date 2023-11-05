@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace shop_view.Models
 {
-    public class RegistrationModel
+    public class Data
     {
         [Required(ErrorMessage = "The 'First Name' field is required.")]
         [MinLength(2, ErrorMessage = "First Name must be at least 2 characters.")]
