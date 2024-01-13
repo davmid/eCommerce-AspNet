@@ -1,16 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Product>
 
-<div>
-    <a asp-controller="Data" asp-action="Form" class="btn btn-primary">Go to Registration</a>
+<!DOCTYPE html>
+
+<head>
+    <title>Karuzela Zdjęć</title>
+</head>
+
+<div id="carouselExample" class="carousel slide" data-ride="carousel">
+    <h5 class="d-flex justify-content-center">Najczęściej kupowane</h5>
+    <div class="carousel-inner">
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <div class="carousel-item @(item == Model.First() ? "active" : "")">
+                    <div class="row" >
+                        <div class="col-sm">
+                            <img src="@item.ImageURL" class="d-block" style="max-height: 250px;" alt="@item.Name" />
+                        </div>
+                        <div class="col-sm">
+                            @item.Name
+                            @item.Description
+                            <a class="btn btn-outline-primary float-end m-3" href="@Url.Action("Details", "Products", new { id = item.Id })"><i class="bi bi-eye-fill"></i>Szczegóły</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
+<script>
+    // JavaScript do zmieniania slajdów karuzeli
+    let currentImage = 0;
+    const images = document.querySelectorAll('.carousel-item');
 
-<h2>Welcome to the Shop!</h2>
-<p>Choose a category:</p>
-<ul>
-    <li><a asp-controller="Phone" asp-action="Index">Phones</a></li>
-    <li><a asp-controller="Screen" asp-action="Index">Screens</a></li>
-    <li><a asp-controller="SmartWatch" asp-action="Index">SmartWatches</a></li>
-</ul>
+    function changeImage() {
+        images[currentImage].classList.remove('active');
+        currentImage = (currentImage + 1) % images.length;
+        images[currentImage].classList.add('active');
+    }
+
+    setInterval(changeImage, 5000); // Zmieniaj slajdy co 5 sekund (5000 ms)
+</script>

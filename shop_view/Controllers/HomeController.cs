@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using shop_view.data.services;
 using shop_view.Models;
 using System.Diagnostics;
 
@@ -6,17 +7,19 @@ namespace shop_view.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductService service)
         {
-            _logger = logger;
-    }
+            _service = service;
+        }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-}
+            var AllProduct = await _service.GetAllAsync();
+
+            return View(AllProduct);
+        }
 
         public IActionResult Privacy()
         {
