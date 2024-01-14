@@ -16,7 +16,35 @@ namespace shop_view.data
 
                 context.Database.EnsureCreated();
 
-                
+                if (!context.Manufacturers.Any())
+                {
+                    context.Manufacturers.AddRange(new List<Manufacturer>()
+                    {
+                        new Manufacturer()
+                        {
+                            Name = "Microsoft",
+                            CompanyLogoURL = "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_logo.jpg",
+                            Description = "Amerykańskie przedsiębiorstwo informatyczne. Najbardziej znane jako producent systemów operacyjnych MS-DOS, Microsoft Windows i oprogramowania biurowego Microsoft Office. Spółka publiczna z siedzibą w Redmond w stanie Waszyngton.",
+
+                        },
+                        new Manufacturer()
+                        {
+                            Name = "Sony",
+                            CompanyLogoURL = "https://upload.wikimedia.org/wikipedia/commons/c/c5/Sony_logos.JPG",
+                            Description = "Japoński producent elektroniki użytkowej i zarazem jeden z największych światowych producentów w tej branży, założony 7 maja 1946 roku przez Masaru Ibukę i Akio Moritę w Tokio jako Tokyo Communication Industry.",
+
+                        },
+                        new Manufacturer()
+                        {
+                            Name = "Samsung",
+                            CompanyLogoURL = "https://upload.wikimedia.org/wikipedia/commons/6/6e/Logo_samsung_5.jpg",
+                            Description = "Grupa biznesowa Samsung to potężny konglomerat, działający w przemyśle elektronicznym, samochodowym, chemicznym, lotniczym, tekstylnym, spożywczym, a także w hotelarstwie, handlu, parkach rozrywki oraz projektowaniu i budowaniu wysokościowców. Swoją siedzibę ma w mieście Suwon, potocznie zwanym „miastem Samsunga.”",
+
+                        }
+                    });
+                    context.SaveChanges();
+                }
+
 
                 // ... (Previous code)
 
